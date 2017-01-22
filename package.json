@@ -1,0 +1,22 @@
+{
+  "name": "input",
+  "version": "0.1.0",
+  "description": "input class for html games",
+  "main": "index.js",
+  "scripts": {
+    "test": "gulp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Noedel-Man/input.git"
+  },
+  "keywords": [
+    "input"
+  ],
+  "author": "Noeël Moeskops",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Noedel-Man/input/issues"
+  },
+  "homepage": "https://github.com/Noedel-Man/input#readme"
+}

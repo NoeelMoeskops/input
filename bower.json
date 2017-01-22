@@ -1,0 +1,21 @@
+{
+  "name": "input",
+  "description": "input class for html games",
+  "main": "index.js",
+  "authors": [
+    "Noeël Moeskops"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "input"
+  ],
+  "homepage": "https://github.com/Noedel-Man/input",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
