@@ -10,7 +10,7 @@
     "input"
   ],
   "homepage": "https://github.com/Noedel-Man/input",
-  "private": true,
+  "private": false,
   "ignore": [
     "**/.*",
     "node_modules",
