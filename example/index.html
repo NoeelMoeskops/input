@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>example</title>
+    <!-- Input class -->
+    <script src="../dist/Input.es5.min.js" charset="utf-8"></script>
+</head>
+<style media="screen">
+    div#object {
+        width: 50px;
+        height: 50px;
+        position: absolute;
+        background-color: green;
+    }
+</style>
+
+<body>
+    <!-- Buttons to press -->
+    <h1>Use gamepad, WASD, arrowkeys or the on-screen buttons to move the green square</h1>
+    <p>Check the console for information.</p>
+    <button class="left">left</button>
+    <button class="down">down</button>
+    <button class="up">up</button>
+    <button class="right">right</button>
+    <!-- The object we are going to control -->
+    <div id="object"></div>
+
+    <script type="text/javascript">
+        // list our keys
+        let inputObject = {
+            "up": {
+                "key": ["KEY_W", "UP_ARROW"],
+                "pad": ["DPAD_UP", "RIGHT_TRIGGER"]
+            },
+            "down": {
+                "key": ["KEY_S", "DOWN_ARROW"],
+                "pad": ["DPAD_DOWN", "LEFT_TRIGGER"],
+                "axes": ["LEFT_Y"]
+            },
+            "left": {
+                "key": ["KEY_A", "LEFT_ARROW"],
+                "pad": ["DPAD_LEFT"]
+            },
+            "right": {
+                "key": ["KEY_D", "RIGHT_ARROW"],
+                "pad": ["DPAD_RIGHT"],
+                "axes": ["LEFT_X"]
+            }
+        };
+
+        // What controller to lisen to
+        let controllerIndex = 1;
+
+        // the buttons to move the square
+        let upButton = document.querySelector(".up");
+        let downButton = document.querySelector(".down");
+        let leftButton = document.querySelector(".left");
+        let rightButton = document.querySelector(".right");
+
+        // our green square
+        let object = document.querySelector("#object");
+
+        // our input objects
+        let up = new Input.Input(inputObject.up, controllerIndex, upButton);
+        let down = new Input.Input(inputObject.down, controllerIndex, downButton);
+        let left = new Input.Input(inputObject.left, controllerIndex, leftButton);
+        let right = new Input.Input(inputObject.right, controllerIndex, rightButton);
+
+        // set object location
+        object.style.top = "200px";
+        object.style.left = "20px";
+
+        // speed of the object
+        let speed = 20;
+        let leftVelocity = 0;
+        let topVelocity = 0;
+
+        // call the loop function (this function will loop)
+        loop();
+        
+        // up
+        up.press = function() {
+            console.log("up press: "+this.isDown+", keyValue: " + this.value);
+            window.topVelocity = -speed * this.value;
+        };
+        up.release = function() {
+            console.log("up release: "+this.isUp);
+
+            // check to see if the contrary button is pressed, if not reset the velocity to 0
+            if (down.isUp) window.topVelocity = 0;
+            else down.press();
+        };
+
+        // down
+        down.press = function() {
+            console.log("down press: "+this.isDown+", keyValue: " + this.value);
+            window.topVelocity = speed * this.value;
+        };
+        down.release = function() {
+            console.log("down release: "+this.isUp);
+            if (up.isUp) window.topVelocity = 0;
+            else up.press();
+        };
+
+        // left
+        left.press = function() {
+            console.log("left press: "+this.isDown+", keyValue: " + this.value);
+            window.leftVelocity = -speed * this.value;
+        };
+        left.release = function() {
+            console.log("left release: "+this.isUp);
+            if (right.isUp) window.leftVelocity = 0;
+            else right.press();
+        };
+
+        // right
+        right.press = function() {
+            console.log("right press: "+this.isDown+", keyValue: " + this.value);
+            window.leftVelocity = speed * this.value;
+        };
+        right.release = function() {
+            console.log("right release: "+this.isUp);
+            if (left.isUp) window.leftVelocity = 0;
+            else left.press();
+        };
+
+
+        function loop() {
+            // get current location
+            let topValue = parseInt(object.style.top, 10);
+            let leftValue = parseInt(object.style.left, 10);
+
+            // give new location
+            object.style.left = (leftValue + window.leftVelocity) + "px";
+            object.style.top = (topValue + window.topVelocity) + "px";
+
+            // loop the loop function
+            requestAnimationFrame(loop);
+        }
+
+    </script>
+</body>
+
+</html>

@@ -146,11 +146,6 @@ namespace Input {
         private gamepadIndex: number;
         private button: any[];
 
-
-        // got gameConfig from global var.ts, ignore error
-        // JSON errors all over the place, but it are all false positives!
-        private input: JSON = Base.gameConfig.settings.input;
-
         // to check the status of the button
         public isDown: boolean = false;
         public isUp: boolean = true;
@@ -158,12 +153,12 @@ namespace Input {
         public release: any = undefined;
         public value: number = 0;
 
-        constructor(button: any[], gamepadIndex: number,private touchDomObject?: any) {
+        constructor(button: JSON, gamepadIndex: number, private touchDomObject?: any) {
             this.gamepadIndex = gamepadIndex;
             this.button = button;
 
 
-            let butToCheck: JSON = this.input[button[0]][button[1]][button[2]];
+            let butToCheck: JSON = button;
             // check input for key
             if (butToCheck.hasOwnProperty("key")) {
                 let _this = this;
@@ -203,7 +198,7 @@ namespace Input {
                 };
             }
             if (butToCheck.hasOwnProperty("mouse")) {
-                console.error("Mouse input class has not been made yet. Get working!");
+                console.error("Mouse input class has not been made yet. Fork or report issue at http://github.com/Noedel-Man/Input/");
             }
             if (this.touchDomObject != null){
                 this.touch = new Touch(this.touchDomObject);
@@ -460,12 +455,20 @@ namespace Input {
 
         private handeler() {
             let _this = this;
+            // desktop controlls
+            this.touchDomObject.addEventListener("mousedown", function() {
+                _this.downHandler();
+            });
+            this.touchDomObject.addEventListener("mouseup", function() {
+                _this.upHandler();
+            });
+            // mobile controlls
             this.touchDomObject.addEventListener("touchstart", function() {
                 _this.downHandler();
-            })
-            this.touchDomObject.addEventListener("touchend", function() {
+            });
+            this.touchDomObject.addEventListener("ontouchend", function() {
                 _this.upHandler();
-            })
+            });
         }
         private downHandler() {
             this.value = 1;
