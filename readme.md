@@ -1,6 +1,6 @@
 # Input class for html games
-Use this class to make your browser respond to input from the user. Keyboard, gamepad or touch (mouse input is planned). Store everything in a single json object like so:
-`
+Use this class to make your browser respond to input from the user. Keyboard, gamepad or touch (mouse input is planned). Store everything in a single `json` object like so:
+```
 // list our keys
 let inputObject = {
     "up": {
@@ -22,17 +22,17 @@ let inputObject = {
         "axes": ["LEFT_X"]
     }
 };
-`
-and whenever the user pressed `KEY_W`, `UP_ARROW`, `DPAD_UP` or `RIGHT_TRIGGER` `up.press()` is called and you can make something happen. Please see example/index.html for more information.
+```
+and whenever the user pressed `KEY_W`, `UP_ARROW`, `DPAD_UP` or `RIGHT_TRIGGER` `up.press()` is called and you can make something happen. Please see [example/index.html](https://github.com/Noedel-Man/input/blob/master/example/index.html) for more information.
 
 ## Install
 
-This package uses bower so simply type `bower install input` and you should be all set. You can also choice from es3, es5 and es6 version. The class is written in Typescript so you could also import that directly if you are using Typescript. a `.d.ts` file is planned.
+This package uses bower so simply type `bower install input` and you should be all set. You can also choice from es3, es5 and es6 versions. The class is written in Typescript so you could also import that directly if you are using Typescript. a `.d.ts` file is planned.
 
 ## supported buttons
 
 ### Keyboard:
-`
+```
     BACKSPACE
     TAB
     ENTER,
@@ -132,10 +132,10 @@ This package uses bower so simply type `bower install input` and you should be a
     BACK_SLASH,
     CLOSE_BRACKET,
     SINGLE_QUOTE
-`
+```
 
 ### gamepad buttons:
-`
+```
     BUTTON_A,
     BUTTON_B,
     BUTTON_X,
@@ -153,12 +153,12 @@ This package uses bower so simply type `bower install input` and you should be a
     DPAD_LEFT,
     DPAD_RIGHT,
     SUPER (super is experimental!)
-`
+```
 
 ### gamepad axis
-`    
+```
     LEFT_X,
     LEFT_Y,
     RIGHT_X,
     RIGHT_Y
-`
+```
