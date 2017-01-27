@@ -27,7 +27,7 @@ and whenever the user pressed `KEY_W`, `UP_ARROW`, `DPAD_UP` or `RIGHT_TRIGGER` 
 
 ## Install
 
-This package uses bower so simply type `bower install input` and you should be all set. You can also choice from es3, es5 and es6 versions. The class is written in Typescript so you could also import that directly if you are using Typescript. a `.d.ts` file is planned.
+This package uses bower so simply type `bower install input` and you should be all set. You can also choose from es3, es5 and es6 versions. The class is written in Typescript so you could also import that directly if you are using Typescript. A `.d.ts` file is planned.
 
 ## supported buttons
 
@@ -155,7 +155,7 @@ This package uses bower so simply type `bower install input` and you should be a
     SUPER (super is experimental!)
 ```
 
-### gamepad axis
+### gamepad axis:
 ```
     LEFT_X,
     LEFT_Y,
